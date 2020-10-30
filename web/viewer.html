@@ -69,6 +69,34 @@ See https://github.com/adobe-type-tools/cmap-resources
 <!--#include viewer-snippet-minified.html-->
 <!--#endif-->
 
+    <style>
+      #unPinPage {
+        display: none;
+      }
+    </style>
+
+    <script>
+      window.freezeState = false;
+
+      // document.getElementById("unPinPage").style.display = "none";
+
+      function freezePage(id = PDFViewerApplication.pdfViewer._location.pageNumber) {
+        window.freezeState = true;
+        // const id = PDFViewerApplication.pdfViewer._location.pageNumber;
+        document.getElementById("viewer").querySelectorAll(`div.page:not([data-page-number="${id}"])`)
+          .forEach(page => page.style.display = "none");
+        document.getElementById("pinPage").style.display = "none";
+        document.getElementById("unPinPage").style.display = "inherit";
+      }
+
+      function showAllPages() {
+        window.freezeState = false;
+        document.getElementById("viewer").querySelectorAll(`div.page`).forEach(page => page.style.display = "block");
+        document.getElementById("pinPage").style.display = "inherit";
+        document.getElementById("unPinPage").style.display = "none";
+      }
+    </script>
+
   </head>
 
   <body tabindex="1">
@@ -239,6 +267,8 @@ See https://github.com/adobe-type-tools/cmap-resources
                 </div>
                 <input type="number" id="pageNumber" class="toolbarField pageNumber" title="Page" value="1" size="4" min="1" tabindex="15" data-l10n-id="page" autocomplete="off">
                 <span id="numPages" class="toolbarLabel"></span>
+                <button id="pinPage" class="toolbarButton" title="Закрепить" onclick="freezePage()">📌</button>
+                <button id="unPinPage" class="toolbarButton" title="Открепить" onclick="showAllPages()">↕️</button>
               </div>
               <div id="toolbarViewerRight">
                 <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">

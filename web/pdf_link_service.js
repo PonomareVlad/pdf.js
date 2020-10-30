@@ -226,6 +226,11 @@ class PDFLinkService {
       this.pdfHistory.pushPage(pageNumber);
     }
 
+    if (window.freezeState) {
+      window.showAllPages();
+      window.freezePage(pageNumber);
+    }
+
     this.pdfViewer.scrollPageIntoView({ pageNumber });
   }
 
