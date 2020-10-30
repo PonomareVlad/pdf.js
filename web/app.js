@@ -595,6 +595,10 @@ const PDFViewerApplication = {
   },
 
   set page(val) {
+    if (window.freezeState) {
+      window.showAllPages();
+      window.freezePage(val);
+    }
     this.pdfViewer.currentPageNumber = val;
   },
 
@@ -2505,6 +2509,10 @@ function webViewerPageNumberChanged(evt) {
   // Note that for `<input type="number">` HTML elements, an empty string will
   // be returned for non-number inputs; hence we simply do nothing in that case.
   if (evt.value !== "") {
+    if (window.freezeState) {
+      window.showAllPages();
+      window.freezePage(evt.value);
+    }
     pdfViewer.currentPageLabel = evt.value;
   }
 
