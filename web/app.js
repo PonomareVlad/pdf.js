@@ -1338,6 +1338,7 @@ const PDFViewerApplication = {
       pdfViewer.optionalContentConfigPromise.then(optionalContentConfig => {
         this.pdfLayerViewer.render({ optionalContentConfig, pdfDocument });
       });
+      window.freezePage();
     });
 
     this._initializePageLabels(pdfDocument);
