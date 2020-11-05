@@ -110,6 +110,7 @@ class Toolbar {
   setPageScale(pageScaleValue, pageScale) {
     this.pageScaleValue = (pageScaleValue || pageScale).toString();
     this.pageScale = pageScale;
+    document.documentElement.style.setProperty("--zoom", this.pageScaleValue);
     this._updateUIState(false);
   }
 

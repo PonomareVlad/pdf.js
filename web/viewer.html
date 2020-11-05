@@ -73,6 +73,23 @@ See https://github.com/adobe-type-tools/cmap-resources
       #unPinPage {
         display: none;
       }
+
+      :root{
+        --zoom: 1;
+      }
+
+      body.page-grid .canvasWrapper:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-image: linear-gradient(rgba(0, 0, 0, .3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, .3) 1px, transparent 1px);
+        background-size: calc(1mm * var(--zoom)) calc(1mm * var(--zoom)), calc(1mm * var(--zoom)) calc(1mm * var(--zoom));
+        background-position: -1px -1px, -1px -1px;
+      }
     </style>
 
     <script>
@@ -285,6 +302,7 @@ See https://github.com/adobe-type-tools/cmap-resources
                 <span id="numPages" class="toolbarLabel"></span>
                 <button id="pinPage" class="toolbarButton" title="Закрепить" onclick="freezePage()">📌</button>
                 <button id="unPinPage" class="toolbarButton" title="Открепить" onclick="showAllPages()">↕️</button>
+                <button id="pageGrid" class="toolbarButton" title="Миллимитровая сетка" onclick="document.body.classList.toggle('page-grid')">#️⃣️</button>
               </div>
               <div id="toolbarViewerRight">
                 <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
