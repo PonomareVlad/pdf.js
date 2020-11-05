@@ -656,11 +656,10 @@ class BaseViewer {
   }
 
   _scrollUpdate() {
-    return;
-    /*if (this.pagesCount === 0) {
+    if (window.freezeState || this.pagesCount === 0) {
       return;
     }
-    this.update();*/
+    this.update();
   }
 
   _scrollIntoView({ pageDiv, pageSpot = null, pageNumber = null }) {
