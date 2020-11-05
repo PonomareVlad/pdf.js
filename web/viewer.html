@@ -81,7 +81,7 @@ See https://github.com/adobe-type-tools/cmap-resources
       // document.getElementById("unPinPage").style.display = "none";
 
       function freezePage(id = PDFViewerApplication.pdfViewer._location.pageNumber) {
-        console.log("freezePage", id);
+        // console.log("freezePage", id);
         window.freezeState = true;
         // const id = PDFViewerApplication.pdfViewer._location.pageNumber;
         document.getElementById("viewer").querySelectorAll(`div.page:not([data-page-number="${id}"])`)
@@ -98,7 +98,7 @@ See https://github.com/adobe-type-tools/cmap-resources
       }
 
       function showAllPages() {
-        console.log("showAllPages");
+        // console.log("showAllPages");
         window.freezeState = false;
         document.getElementById("viewer").querySelectorAll(`div.page`).forEach(page => {
           page.style.opacity = 1;
