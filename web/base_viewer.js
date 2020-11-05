@@ -656,10 +656,11 @@ class BaseViewer {
   }
 
   _scrollUpdate() {
-    if (this.pagesCount === 0) {
+    return;
+    /*if (this.pagesCount === 0) {
       return;
     }
-    this.update();
+    this.update();*/
   }
 
   _scrollIntoView({ pageDiv, pageSpot = null, pageNumber = null }) {
