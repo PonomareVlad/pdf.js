@@ -81,17 +81,33 @@ See https://github.com/adobe-type-tools/cmap-resources
       // document.getElementById("unPinPage").style.display = "none";
 
       function freezePage(id = PDFViewerApplication.pdfViewer._location.pageNumber) {
+        console.log("freezePage", id);
         window.freezeState = true;
         // const id = PDFViewerApplication.pdfViewer._location.pageNumber;
         document.getElementById("viewer").querySelectorAll(`div.page:not([data-page-number="${id}"])`)
-          .forEach(page => page.style.display = "none");
+          .forEach(page => {
+            page.style.opacity = 0;
+            page.style.maxHeight = "1px";
+            page.style.marginTop = 0;
+            page.style.marginBottom = 0;
+            page.style.border = 0;
+            page.style.overflow = "hidden";
+          });
         document.getElementById("pinPage").style.display = "none";
         document.getElementById("unPinPage").style.display = "inherit";
       }
 
       function showAllPages() {
+        console.log("showAllPages");
         window.freezeState = false;
-        document.getElementById("viewer").querySelectorAll(`div.page`).forEach(page => page.style.display = "block");
+        document.getElementById("viewer").querySelectorAll(`div.page`).forEach(page => {
+          page.style.opacity = 1;
+          page.style.maxHeight = '';
+          page.style.marginTop = '';
+          page.style.marginBottom = '';
+          page.style.border = '';
+          page.style.overflow = '';
+        });
         document.getElementById("pinPage").style.display = "inherit";
         document.getElementById("unPinPage").style.display = "none";
       }
